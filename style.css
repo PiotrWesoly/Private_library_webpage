@@ -1,0 +1,13 @@
+
+body {
+  background: url("https://wallpaperstock.net/old-office-wallpapers_22279_1920x1200.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  
+  margin-bottom: 48px;
+  
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 100%;
+  line-height: 1.8em;
+  color: #333;
+}
