@@ -26,9 +26,12 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     </style>
 </head>
 <body>
+    <div>
     <h1 class="my-5, text-white">Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Welcome to our site.</h1>
     <p>
-        <a href="logout.php" class="btn btn-danger ml-3, align-baseline">Sign Out of Your Account</a>
+        <a href="logout.php" class="btn btn-danger ml-3, align-baseline" style="position:absolute; top:0; right:0;">Sign Out of Your Account</a>
+        <a href="booksTable.php" class="btn btn-danger ml-3, align-baseline">Books Table</a>
     </p>
+    </div>
 </body>
 </html>

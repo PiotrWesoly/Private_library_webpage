@@ -18,19 +18,28 @@ require('config.php');
 
 $baza = mysqli_connect($hostname, $username, $password, $db);
 
-$select = array("INSERT into zwierzaki( nazwa, wiek, ilosc_nog)
-VALUES( 'pies', 10, 4);",
+// $select = "INSERT into book( book_id, title, author, publisher, published_dt)
+// VALUES(1, 'A Game of Thrones', 'George R. Martin', 'Bantam', 196-08-01);";
 
-"INSERT into zwierzaki( nazwa, wiek, ilosc_nog)
-VALUES( 'stonoga', 1, 100);",
+$select = array("INSERT into user_book(user_id, book_id, status_id)
+			VALUES(1, 1, 2)");
 
-"INSERT into zwierzaki( nazwa, wiek, ilosc_nog)
-VALUES( 'kangur', 15, 2);",
+// $select = array(
+// 	"INSERT into books(id, title, author, no_of_pages)
+// 	VALUES(1, 'A Game of Thrones', 'George R. Martin', 450);"
+// 	,
+// 	"INSERT into status(id, status_value)
+// 	VALUES(1, 'Read');"
+// 	,
+// 	"INSERT into status(id, status_value)
+// 	VALUES(2, 'Currently reading');"
+// 	,
+// 	"INSERT into status(id, status_value)
+// 	VALUES(3, 'Want to read');"
+// 			);
 
-"INSERT into zwierzaki(nazwa, wiek, ilosc_nog)
-VALUES( 'wąż', 8, 0);");
 
-for($i=0; $i<4;$i++)
+for($i=0; $i<1;$i++)
 {
 	echo '<p>'.$select[$i].'</p>';
 	$result = mysqli_query($baza, $select[$i])
