@@ -16,8 +16,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 require_once "config.php";
 
 //Define varibales and initialize with emptu values
-$title = $author = $publisher = "";
-$title_err = $author_err = $publisher_err = "";
+$title = $author = $numOfPage = $status = "";
+$title_err = $author_err = $numOfPage_err = "";
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
@@ -25,57 +25,84 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty(trim($_POST["title"]))){
         $title_err = "Please enter title.";
     } else{
-        $username = trim($_POST["title"]);
+        $title = trim($_POST["title"]);
     }
 
     // Check if author is empty
     if(empty(trim($_POST["author"]))){
-        $title_err = "Please enter author first and last name.";
+        $author_err = "Please enter author first and last name.";
     } else{
-        $username = trim($_POST["author"]);
+        $author = trim($_POST["author"]);
     }
 
-    // Check if publihser is empty
-    if(empty(trim($_POST["publisher"]))){
-        $title_err = "Please enter the name of publisher.";
+    // Check if numOfPage is empty
+    if(empty(trim($_POST["numOfPage"]))){
+        $numOfPage_err = "Please enter the name of numOfPage.";
     } else{
-        $username = trim($_POST["publisher"]);
+        $numOfPage = trim($_POST["numOfPage"]);
     }
-    // Fetch the last id of book
-    $result = mysqli_query($link, "SELECT max(book_id) FROM book");
+    
+    $status = trim($_POST["status"]);
 
-    $id = mysqli_fetch_row($result);
-    // $id = mysqli_result($result, 0, 'book_id');
-
-    if(empty($title_err) && empty($author_err) && empty($publisher_err)){
+    if(empty($title_err) && empty($author_err) && empty($numOfPage_err)){
         // Prepare an insert statement
-        $sql = "INSERT INTO book (title, author, publisher) 
-                VALUES (?, ?, ?)
-                INSERT INTO common_lookup (element_value)
-                VALUES (?)
-                INSERT INTO user_books(user_id, book_id)
-                VALUES(".$_SESSION["id"].", 2";
+        $sql = "INSERT INTO books (title, author, no_of_pages) 
+                VALUES (?, ?, ?);";
 
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "ss", $param_title, $param_author, $param_publisher, $param_status);
-            
+            mysqli_stmt_bind_param($stmt, "ssi", $param_title, $param_author, $param_numOfPage);
+            echo $sql;
             // Set parameters
             $param_title = $title;
             $param_author = $author;
-            $param_publihser = $publihser;
-            $param_status = $status;
+            $param_numOfPage = $numOfPage;
+
+            echo $param_author;
+            echo $numOfPage;
             
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
-                // Redirect to main page
-                header("location: booksTable.php");
+
+                $select = "select max(id) from books;";
+                $result = mysqli_query($link, $select)
+			                or die(mysqli_error($link));
+                $wiersz = mysqli_fetch_row($result);
+                echo $wiersz[0];
+
+                $sql1 = "INSERT INTO user_book (user_id, book_id, status_id) 
+                    VALUES (?, ?, ?);";
+
+                if($stmt1 = mysqli_prepare($link, $sql1)){
+                    // Bind variables to the prepared statement as parameters
+                    mysqli_stmt_bind_param($stmt1, "iii", $param_user_id, $param_book_id, $param_status_id);
+                    
+                    // Set parameters
+                    $param_user_id = $_SESSION["id"];
+                    $param_book_id = $wiersz[0];
+                    $param_status_id = $status;
+
+                    echo $param_user_id;
+                    echo $param_book_id;
+                    echo $param_status_id;
+                    
+                    // Attempt to execute the prepared statement
+                    if(mysqli_stmt_execute($stmt1)){
+                        // Redirect to main page
+                        header("location: booksTable.php");
+                    } else{
+                        echo "Oops! Something went wrong. Please try again later11.";
+                    }
+
+                    mysqli_stmt_close($stmt1);
+                }
             } else{
-                echo "Oops! Something went wrong. Please try again later.";
+                echo "Oops! Something went wrong. Please try again later.22";
             }
 
-            // Close statement
+            //Close statement
             mysqli_stmt_close($stmt);
+
         }
     }
 }
@@ -119,15 +146,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <input type="text" name="author" class="form-control" >
             </div>
             <div class="form-group">
-                <label>Publisher</label>
-                <input type="text" name="publisher" class="form-control" >
+                <label>numOfPage</label>
+                <input type="number" name="numOfPage" class="form-control" >
             </div>
             <div class="form-group">
                 <label>Status</label>
                 <select name="status" name="status"id="status" class="form-control" >
                 <?php
                 $baza = mysqli_connect($hostname, $username, $password, $db);
-                $select = 'select element_id, element_value from common_lookup;';
+                $select = 'select id, status_value from status;';
                 $result = mysqli_query($baza, $select)
 			                or die(mysqli_error($baza));
 	

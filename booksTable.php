@@ -39,7 +39,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <th>User</th>
 		<th>Title</th>
 		<th>Author</th>
-		<th>Publisher</th>
+		<th>Number of pages</th>
 		<th>Status</th>
 	</thead>
 
@@ -51,7 +51,7 @@ $baza = mysqli_connect($hostname, $username, $password, $db);
 
 
 	$select = '
-    select * from user_book
+    select * from books
             ';
 
     // $select = '
