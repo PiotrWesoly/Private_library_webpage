@@ -38,6 +38,7 @@ $select = array("INSERT into user_book(user_id, book_id, status_id)
 // 	VALUES(3, 'Want to read');"
 // 			);
 
+// $select = array("TRUNCATE TABLE users;");
 
 for($i=0; $i<1;$i++)
 {

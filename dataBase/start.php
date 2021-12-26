@@ -53,7 +53,8 @@ $select = 'CREATE OR REPLACE TABLE user_book
 );
 ';
 
-// $select = 'delete from user_books where user_id=1';
+//  $select = 'DROP TABLE users';
+//  $select = 'DROP TABLE user_book';
 
 echo $select;
 $result = mysqli_query($baza, $select)
