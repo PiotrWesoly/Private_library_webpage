@@ -15,7 +15,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 // Include config file
 require_once "config.php";
 
-//Define varibales and initialize with emptu values
+//Define varibales and initialize with empty values
 $title = $author = $numOfPage = $status = "";
 $title_err = $author_err = $numOfPage_err = "";
 
@@ -30,19 +30,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     // Check if author is empty
     if(empty(trim($_POST["author"]))){
-        $author_err = "Please enter author first and last name.";
+        $author_err = "Please enter author's first and last name.";
     } else{
         $author = trim($_POST["author"]);
     }
 
     // Check if numOfPage is empty
     if(empty(trim($_POST["numOfPage"]))){
-        $numOfPage_err = "Please enter the name of numOfPage.";
+        $numOfPage_err = "Please enter number of book's pages.";
     } else{
         $numOfPage = trim($_POST["numOfPage"]);
     }
     
-    $status = trim($_POST["status"]);
+    //$status = trim($_POST["status"]);
 
     if(empty($title_err) && empty($author_err) && empty($numOfPage_err)){
         // Prepare an insert statement
@@ -64,7 +64,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
 
-                $select = "select max(id) from books;";
+               /* $select = "select max(id) from books;";
                 $result = mysqli_query($link, $select)
 			                or die(mysqli_error($link));
                 $wiersz = mysqli_fetch_row($result);
@@ -84,20 +84,21 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
                     echo $param_user_id;
                     echo $param_book_id;
-                    echo $param_status_id;
+                    echo $param_status_id;*/
                     
                     // Attempt to execute the prepared statement
-                    if(mysqli_stmt_execute($stmt1)){
+                    //if(mysqli_stmt_execute($stmt1)){
                         // Redirect to main page
-                        header("location: booksTable.php");
-                    } else{
+                header("location: booksTable.php");
+                    /*} else{
                         echo "Oops! Something went wrong. Please try again later11.";
-                    }
+                    }*/
 
-                    mysqli_stmt_close($stmt1);
-                }
-            } else{
-                echo "Oops! Something went wrong. Please try again later.22";
+                   // mysqli_stmt_close($stmt1);
+                
+            } 
+			else{
+                echo "Oops! Something went wrong. Please try again later.";
             }
 
             //Close statement
@@ -134,7 +135,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <body style="margin: 300px 0 0 0;">
     <div class="wrapper">
         <h2>New book</h2>
-        <p>Specify the book that you wan to add</p>
+        <p>Specify the book that you want to add</p>
 
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div class="form-group">
@@ -146,14 +147,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <input type="text" name="author" class="form-control" >
             </div>
             <div class="form-group">
-                <label>numOfPage</label>
+                <label>Number of pages</label>
                 <input type="number" name="numOfPage" class="form-control" >
             </div>
-            <div class="form-group">
+            <!--<div class="form-group">
                 <label>Status</label>
                 <select name="status" name="status"id="status" class="form-control" >
                 <?php
-                $baza = mysqli_connect($hostname, $username, $password, $db);
+                /*$baza = mysqli_connect($hostname, $username, $password, $db);
                 $select = 'select id, status_value from status;';
                 $result = mysqli_query($baza, $select)
 			                or die(mysqli_error($baza));
@@ -161,9 +162,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 while($wiersz = mysqli_fetch_row($result))
                 {   
                     echo '<option value="'.$wiersz[0].'">'.$wiersz[1]."</option> /n";
-                }
+                }*/
                 ?>
-            </div>
+            </div>-->
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Add book">
             </div>
