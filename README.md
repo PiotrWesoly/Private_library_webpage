@@ -6,7 +6,7 @@ I wanted to create a website that can store a lot of books. There a person can p
 </p>
 <p align="center">
   <b> 
-      Screenshot of a welcome page
+      Welcome page
   </b>
 </p>
 <p align="center">
@@ -14,7 +14,7 @@ I wanted to create a website that can store a lot of books. There a person can p
 </p>
 <p align="center">
   <b> 
-      Screenshot of a
+      Add new book to library
   </b>
 </p>
 <p align="center">
@@ -22,7 +22,7 @@ I wanted to create a website that can store a lot of books. There a person can p
 </p>
 <p align="center">
   <b> 
-      Screenshot of an application
+      Add book to your collection
   </b>
 </p>
 <p align="center">
