@@ -4,3 +4,32 @@ I wanted to create a website that can store a lot of books. There a person can p
 <p align="center">
     <img width="469" alt="image" src="https://user-images.githubusercontent.com/55448589/152545661-2488d7e9-b1ae-43d4-a9a8-2800a93fb197.png">
 </p>
+<p align="center">
+  <b> 
+      Screenshot of a welcome page
+  </b>
+</p>
+<p align="center">
+    <img width="454" alt="image" src="https://user-images.githubusercontent.com/55448589/152545778-e16c5b67-4851-4a7e-9ffe-3b74ef96f1df.png">
+</p>
+<p align="center">
+  <b> 
+      Screenshot of a
+  </b>
+</p>
+<p align="center">
+    <img width="524" alt="image" src="https://user-images.githubusercontent.com/55448589/152545813-abad767c-ac02-4a25-a41f-96ab99925ea2.png">
+</p>
+<p align="center">
+  <b> 
+      Screenshot of an application
+  </b>
+</p>
+<p align="center">
+    <img width="468" alt="image" src="https://user-images.githubusercontent.com/55448589/152545854-10731e40-243f-4ad6-85cc-a9f50a54f7d1.png">
+</p>
+<p align="center">
+  <b> 
+      Model of a database
+  </b>
+</p>
